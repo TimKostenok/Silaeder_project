@@ -1,5 +1,3 @@
-import email
-from email import message
 from django.db.utils import IntegrityError
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
@@ -8,10 +6,10 @@ from .forms import RegisterForm
 from django import urls
 from .forms import LoginForm
 from django.contrib.auth import authenticate
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login
 
-def index(request):    
-    return render(request, 'main/index.html')
+def index(request):
+    return render(request, 'main/index.html', {'user': request.user})
 
 def logout_view(request):
     logout(request)
@@ -24,7 +22,6 @@ def register(request):
         print(form.is_valid())
         if form.is_valid(): # TODO: add a repeat-password field
             try:
-                print(form.cleaned_data)
                 user = User.objects.create_user(
                     username=form.cleaned_data['username'],
                     email=form.cleaned_data['email'],
@@ -40,17 +37,19 @@ def register(request):
         form = RegisterForm()
     return render(request, 'main/register.html', {'form': form, 'message': message})
 
-def login(request):
+def login_view(request):
     message = ''
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
             if user is not None:
+                login(request, user)
                 return redirect('index')
             else:
                 user = authenticate(email=form.cleaned_data['username'], password=form.cleaned_data['password'])
                 if user is not None:
+                    login(request, user)
                     return redirect('index')
                 else:
                     message = 'Invalid username or password'
