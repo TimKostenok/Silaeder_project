@@ -1,4 +1,8 @@
 {% extends "main/base.html" %}
 {% block content %}
-...
+{% if user.is_authenticated %}
+Hi, {{ user.username }}
+{% else %}
+GO OUT
+{% endif %}
 {% endblock %}
