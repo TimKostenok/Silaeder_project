@@ -2,7 +2,7 @@ body {
     margin: 0;
     background-color: #f1f1f1;
     font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
-    font-size: 24px;
+    font-size: auto;
 }
 
 .navbar ul {
@@ -57,10 +57,34 @@ body {
 
 .profile {
     box-sizing: border-box;
-    width: 90%;
-    align-items: center;
+    margin: 1%;
     background-color: #ffffff;
-    height: 8vh;
+    height: 10vh;
     resize: none;
     border-radius: 20px;
+}
+
+.profile .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 1vh;
+    padding-right: 1vh;
+    padding-left: 1vh;
+    padding-bottom: 1vh;
+    height: 8vh;
+    width: 8vh;
+    border-radius: 50%;
+} 
+
+.profile .name {
+    box-sizing: border-box;
+    padding-top: 5%;
+    font-size: large;
+}
+
+.profile .status {
+    box-sizing: border-box;
+    padding-top: 1%;
+    font-size: small;
 }
