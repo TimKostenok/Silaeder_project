@@ -1,0 +1,64 @@
+.navbar{
+    background:#FEF200;
+}
+.nav-link , .navbar-brand{
+    color: #000000;
+    cursor: pointer;
+    width: 150px;
+    height: 75px;
+    text-align: center;
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav-link{
+    margin-right: 1em !important;
+    border-radius: 45px;
+    font-size: x-large;
+    text-align: center;
+}
+.nav-link:hover{
+    background: #FF8100;
+    border-radius: 45px;
+}
+.navbar-collapse{
+    justify-content: flex-end;
+}
+.overlay{
+    position: absolute;
+    min-height: 100%;
+    min-width: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(244, 244, 244, 0.79);
+}
+.navbar-collapse{
+    justify-content: flex-end;
+}
+.description{
+    position: absolute;
+    top: 30%;
+    margin: auto;
+    padding: 2em;
+}
+.description h1{
+    color:#F97300 ;
+}
+.description p{
+    color:#666;
+    font-size: 20px;
+    width: 50%;
+    line-height: 1.5;
+}
+.description button{
+    border:1px  solid #F97300;
+    background:#F97300;
+    color:#fff;
+}
+.header{
+    background-image: url(photo_2022-10-27_11-24-23.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
