@@ -15,6 +15,7 @@ class ProjectForm(forms.Form):
     autor = forms.CharField(max_length=255)
     # Science director. Will it be like list?
     sc_dir = forms.CharField(max_length=255)
+    #year_of_creating = forms.DateField()
     short_desc = forms.CharField(max_length=511)
     full_desc = forms.CharField(max_length=4095)
-    icon = forms.FileField(upload_to='icons')
+    icon = forms.FileField()

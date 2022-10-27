@@ -1,7 +1,7 @@
 from re import S
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from .forms import RegisterForm
+from .forms import RegisterForm, ProjectForm
 
 def register(request):
     if request.method == 'POST':
@@ -30,10 +30,13 @@ def new_project(request):
             prj_short_desc = form.cleaned_data['short_desc']
             prj_full_desc = form.cleaned_data['full_desc']
             prj = Project(name=prj_name, autor=prj_autor, sc_dir=prj_sc_dir, short_desc=prj_short_desc, full_desc=prj_full_desc, icon=None)
+            prj.save()
             if request.FILES.get('icon'):
                 prj_icon = request.FILES['icon']
                 prj.icon = prj_icon
+                prj.save()
             else:
+                text_ = 'Please, upload files!'
                 form = ProjectForm(instance=prj)
         else:
             text_ = 'Please, fill the from correctly!'
