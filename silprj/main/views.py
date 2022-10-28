@@ -1,3 +1,4 @@
+from email import message
 from django.contrib.auth.decorators import login_required
 from django.db.utils import IntegrityError
 from django.http import HttpResponseRedirect
@@ -9,9 +10,8 @@ from .auth import authenticate
 from django.contrib.auth import logout, login
 from .models import SUser, Project
 
-
 def index(request):
-    return render(request, 'main/index.html', {'user': request.user})
+    return render(request, 'main/index.html', {'user': request.user, 'projects': Project.objects.all()})
 
 def logout_view(request):
     logout(request) 
@@ -65,13 +65,19 @@ def create(request):
         print(form.data)
         print(request.FILES.get('icon'))
         if form.is_valid():
+            users = []
             prj_icon = request.FILES.get('icon')
             prj_name = form.cleaned_data['project_name']
-            prj_author = form.cleaned_data['author']
             prj_sc_dir = form.cleaned_data['sc_dir']
             prj_short_desc = form.cleaned_data['short_desc']
             prj_full_desc = form.cleaned_data['full_desc']
-            prj = Project(project_name=prj_name, author=prj_author, sc_dir=prj_sc_dir, short_desc=prj_short_desc, full_desc=prj_full_desc, icon=prj_icon)
+            prj = Project(project_name=prj_name, sc_dir=prj_sc_dir, short_desc=prj_short_desc, full_desc=prj_full_desc, icon=prj_icon)
+            prj.save()
+            for username in form.cleaned_data['author'].replace(' ', '').split(','):
+                try:
+                    users.append(SUser.objects.get(username=username))
+                except SUser.DoesNotExist:
+                    text_ = f'User {username} does not exists'
             prj.save()
         else:
             text_ = 'Please, fill the from correctly!'

@@ -1,8 +1,9 @@
 {% extends "main/base.html" %}
 {% block content %}
-{% if user.is_authenticated %}
-Hi, {{ user.username }}
-{% else %}
-GO OUT
-{% endif %}
+    {% for project in projects %}
+        <h3>{{ project.project_name }}</h3>
+        <img src="media/{{ project.icon }}">
+        <p>{{ project.author }}</p>
+        <p>{{ project.short_desc }}</p>
+    {% endfor %}
 {% endblock %}

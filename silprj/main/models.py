@@ -36,10 +36,9 @@ class SUser(AbstractBaseUser):
         return self.is_admin
 
 
-class Project(models.Model):
-    project_name = models.CharField(default='Random project', max_length=127)
-    author = models.CharField(default='OA', max_length=255)
-    #year_of_creating = models.DateField(default=datetime.now())
+class Project(models.Model): # TODO
+    project_name = models.CharField(default='Random project', max_length=127, unique=True)
+    authors = models.ManyToManyField(SUser, null=True)
     sc_dir = models.CharField(default='OA', max_length=255)
     # s_dir = models.ForeignKey(customUser, on_delete=models.CASCADE, related_name='student')
     short_desc = models.CharField(default='It is a project', max_length=511)
