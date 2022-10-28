@@ -1,0 +1,14 @@
+{% extends "main/base.html" %}
+{% block content %}
+    <h1>{{ message }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="username" id="id_username" placeholder="Username..." required>
+        <input type="text" name="first_name" id="id_first_name" placeholder="First name..." required>
+        <input type="text" name="last_name" id="id_last_name" placeholder="Last name..." required>
+        <input type="email" name="email" id="id_email" placeholder="Email..." ``required>
+        <input type="password" name="password" id="id_password" placeholder="Password..." required>
+        <input type="password" name="password2" id="id_password2" placeholder="Confirm password..." required>
+        <input type="submit" value="submit" required>
+    </form>
+{% endblock %}

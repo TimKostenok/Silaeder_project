@@ -1,0 +1,28 @@
+.navbar{
+    background:#FEF200;
+}
+.nav-link , .navbar-brand{
+    color: #000000;
+    cursor: pointer;
+    width: 150px;
+    height: 75px;
+    text-align: center;
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav-link{
+    margin-right: 1em !important;
+    border-radius: 45px;
+    font-size: x-large;
+    text-align: center;
+}
+.nav-link:hover{
+    background: #FF8100;
+    border-radius: 45px;
+}
+.base-content {
+    padding-top: 10%;
+    padding-left: 10%;
+}
