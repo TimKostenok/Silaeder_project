@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<h1>{{ text_ }}</h1>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="text" name="project_name" id="id_project_name" placeholder="Name of your project..." required>
+    <input type="text" name="author" id="author" placeholder="Authors of the project..." required>
+    <input type="text" name="sc_dir" id="id_sc_dir" placeholder="Your Science director..." required>
+    <textarea name="short_desc" id="id_short_desc" placeholder="Short description of your project..." required></textarea>
+    <textarea name="full_desc" id="id_full_desc" placeholder="Full description of your project..." required></textarea>
+    <input type="file" name="icon" id="id_icon" placeholder="Icon (photo) of your project..." required>
+    <input type="submit" value="Create project">
+</form>
+{% endblock %}

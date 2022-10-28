@@ -35,12 +35,15 @@ class SUser(AbstractBaseUser):
     def is_staff(self):
         return self.is_admin
 
+
 class Project(models.Model):
-    name = models.CharField(max_length=127)
-    autors = models.ManyToManyField(SUser)
+    project_name = models.CharField(default='Random project', max_length=127)
+    author = models.CharField(default='OA', max_length=255)
+    #year_of_creating = models.DateField(default=datetime.now())
+    sc_dir = models.CharField(default='OA', max_length=255)
     # s_dir = models.ForeignKey(customUser, on_delete=models.CASCADE, related_name='student')
-    short_text = models.CharField(max_length=511)
-    full_text = models.CharField(max_length=4095)
+    short_desc = models.CharField(default='It is a project', max_length=511)
+    full_desc = models.CharField(default='It is a project', max_length=4095)
     icon = models.FileField(upload_to='icons')
 
 class Reward(models.Model):
