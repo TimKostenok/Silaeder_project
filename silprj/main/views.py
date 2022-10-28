@@ -20,20 +20,23 @@ def register(request):
     message = ''
     if request.method == 'POST':
         form = RegisterForm(request.POST)
-        if form.is_valid(): # TODO: add a repeat-password field
-            try:
-                user = SUser.objects.create_user(
-                    form.cleaned_data['username'],
-                    form.cleaned_data['email'],
-                    form.cleaned_data['password'],
-                    form.cleaned_data['first_name'],
-                    form.cleaned_data['last_name']
-                )
-                user.save()
-                login(request, user)
-                return redirect('index')
-            except IntegrityError as e:
-                message = 'User with your username already exist'
+        if form.is_valid():
+            if form.cleaned_data['password'] == form.cleaned_data['password2']:
+                try:
+                    user = SUser.objects.create_user(
+                        form.cleaned_data['username'],
+                        form.cleaned_data['email'],
+                        form.cleaned_data['password'],
+                        form.cleaned_data['first_name'],
+                        form.cleaned_data['last_name']
+                    )
+                    user.save()
+                    login(request, user)
+                    return redirect('index')
+                except IntegrityError as e:
+                    message = 'User with your username already exist'
+            else:
+                message = 'Passwords doesn\'t match'
     else:
         form = RegisterForm()
     return render(request, 'main/register.html', {'form': form, 'message': message})

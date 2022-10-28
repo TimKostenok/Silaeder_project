@@ -8,9 +8,10 @@ class RegisterForm(forms.Form):
     last_name = forms.CharField(max_length=25)
     email = forms.EmailField(max_length=50)
     password = forms.CharField(max_length=128)
+    password2 = forms.CharField(max_length=128)
 
     class Meta:
-        exclude = ['email', 'password']
+        exclude = ['email', 'password', 'password2']
 
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=50)
