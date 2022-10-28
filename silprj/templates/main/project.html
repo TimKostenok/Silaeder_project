@@ -1,0 +1,8 @@
+{% extends "main/project.html"}
+{% block content %}
+<h1>{{ project.project_name }}</h1
+<img src="media/{{ project.icon }}">
+<p>Science director: {{ project.sc_dir }}</p>
+<p>Maded by: {{ project.authors }}</p>
+<p>{{ project.full_desc }}</p>
+{% endblock %}

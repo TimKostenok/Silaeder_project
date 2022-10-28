@@ -1,8 +1,8 @@
 from email import message
 from django.contrib.auth.decorators import login_required
 from django.db.utils import IntegrityError
-from django.http import HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.http import HttpResponseRedirect, Http404
+from django.shortcuts import get_object_or_404, redirect, render
 from .forms import RegisterForm, ProjectForm
 from django import urls
 from .forms import LoginForm
@@ -85,3 +85,11 @@ def create(request):
     else:
         form = ProjectForm()
     return render(request, 'main/new_project.html', {'form': form, 'text_': text_})
+
+
+def project_view(request, pk):
+    try:
+        project = Project.objects.get(id=pk)
+        return render(request, 'main/project.html', {'project': project})
+    except project.DoesNotExists:
+        return Http404('Что ты здесь делаешь?')
