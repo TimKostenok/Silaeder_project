@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.db.utils import IntegrityError
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
@@ -56,6 +57,7 @@ def login_view(request):
         form = LoginForm()
     return render(request, 'main/login.html', {'form': form, 'message': message})
 
+@login_required
 def create(request):
     text_ = 'New project'
     if request.method == 'POST':
